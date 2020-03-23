@@ -12,13 +12,48 @@ This is a preliminary sketch of the Onboarding API
 + Response 200 (text/html)
             
         <h1>Home</h1>
-        
+ 
+
+## Onboarding Record [/1q2w3e4r5t]
+
+### Show Onboarding Record [GET]
++ Response 200 (text/html)        
+
         <h1>ITEM:1q2w3e4r5t</h1>
-        
-        <p><a href="/list">LIST</a></p>
+
         <p>data fields display here...</p>
         <p><a href="/1q2w3e4r5t/company">Show Company Info Form</a></p>
         <p><a href="/1q2w3e4r5t/account">Show Account Info Form</a></p>
         <p><a href="/1q2w3e4r5t/activity">Show Activity Info Form</a></p>
         <p><a href="/1q2w3e4r5t/approve">Show Approve Form</a></p>
         <p><a href="/1q2w3e4r5t/reject">Show Reject Form</a></p>
+        
+
+### Create Onboarding Record [POST]
+
++ Request (application/x-www-form-urlencoded)
+
+        onboardingId=1q2w3e4r5t
+
++ Response 201 (text/html)
+
+    + Header
+    
+            Location: /1q2w3e4r5t
+
+    + Body
+    
+            <p><a href="/1q2w3e4r5t">created ITEM:1q2w3e4r5t</a></p>
+
+
+## Onboarding Create Form [/create]
+
+### Show Onboarding Create Form [GET]
+
++ Response 200 (text/html)
+
+        <h1>CREATE-FORM</h1>
+        <form name="create" action="/list" method="post">
+        Onboarding Id:<input name="onboardingId" value="1q2w3e4r5t" />
+        <input type="submit" />
+        </form>
