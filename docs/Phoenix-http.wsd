@@ -1,0 +1,12 @@
+title Phoenix HTTP
+
+Home -> EmploymentList: GET
+EmploymentList --> Home: GET
+EmploymentList -> EmploymentItem: PUT(employmentBody)
+EmploymentList -> EmploymentItem: GET(id=?)
+EmploymentItem --> EmploymentList: GET
+EmploymentItem -> Employee: GET
+Employee --> EmploymentItem: PUT(employeeBody)
+EmploymentItem -> Position: GET
+Position --> EmploymentItem: PUT(positionBody)
+

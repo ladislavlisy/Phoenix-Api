@@ -1,0 +1,13 @@
+title Phoenix
+
+home -> listEmployments:
+listEmployments --> home:
+listEmployments -> createEmploymentForm:
+createEmploymentForm --> listEmployments:
+listEmployments -> readEmployment:
+readEmployment --> listEmployments:
+readEmployment -> addEmployeeInfoForm:
+addEmployeeInfoForm --> readEmployment:
+readEmployment -> addPositionInfoForm:
+addPositionInfoForm --> readEmployment:
+
