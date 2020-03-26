@@ -1,0 +1,703 @@
+{
+  "openapi" : "3.0.0",
+  "info" : {
+    "title" : "Phoenix Payroll API",
+    "description" : "design and build great web apis",
+    "version" : "1.0.0"
+  },
+  "servers" : [ {
+    "url" : "https://virtserver.swaggerhub.com/MzdyHrave/Phoenix/1.0.0",
+    "description" : "SwaggerHub API Auto Mocking"
+  } ],
+  "paths" : {
+    "/" : {
+      "get" : {
+        "tags" : [ "employee" ],
+        "summary" : "Use this to retrieve the home page for the employees API",
+        "operationId" : "home",
+        "parameters" : [ {
+          "name" : "session",
+          "in" : "query",
+          "description" : "session token",
+          "required" : false,
+          "style" : "form",
+          "explode" : true,
+          "schema" : {
+            "type" : "string",
+            "example" : "zaxscdvfbg"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "application/prag+json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/reply"
+                }
+              },
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/reply"
+                }
+              }
+            }
+          },
+          "default" : {
+            "description" : "Unexpected error",
+            "content" : {
+              "application/problem+json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/error"
+                }
+              },
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/start" : {
+      "post" : {
+        "tags" : [ "employee" ],
+        "summary" : "Use this to start process of onboarding a employee",
+        "operationId" : "startOnboarding",
+        "parameters" : [ {
+          "name" : "if-None-Match",
+          "in" : "header",
+          "description" : "Conditional Create Header",
+          "required" : false,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "type" : "string",
+            "example" : "*"
+          }
+        } ],
+        "requestBody" : {
+          "$ref" : "#/components/requestBodies/start"
+        },
+        "responses" : {
+          "201" : {
+            "description" : "Created",
+            "headers" : {
+              "Location" : {
+                "description" : "URL of created resource",
+                "style" : "simple",
+                "explode" : false,
+                "schema" : {
+                  "type" : "string"
+                },
+                "example" : "/employee/123"
+              }
+            }
+          },
+          "default" : {
+            "description" : "Unexpected error",
+            "content" : {
+              "application/problem+json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/error"
+                }
+              },
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/employee" : {
+      "get" : {
+        "tags" : [ "employee" ],
+        "summary" : "Use this to get a list of employee records",
+        "operationId" : "emploeeList",
+        "parameters" : [ {
+          "name" : "status",
+          "in" : "query",
+          "description" : "status flag",
+          "required" : false,
+          "style" : "form",
+          "explode" : true,
+          "schema" : {
+            "type" : "string",
+            "example" : "active",
+            "enum" : [ "active", "closed", "pending" ]
+          }
+        }, {
+          "name" : "session",
+          "in" : "query",
+          "description" : "session token",
+          "required" : false,
+          "style" : "form",
+          "explode" : true,
+          "schema" : {
+            "type" : "string",
+            "example" : "zaxscdvfbg"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "application/prag+json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/reply"
+                }
+              },
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/reply"
+                }
+              }
+            }
+          },
+          "default" : {
+            "description" : "Unexpected error",
+            "content" : {
+              "application/problem+json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/error"
+                }
+              },
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/employee/{identifier}" : {
+      "get" : {
+        "tags" : [ "employee" ],
+        "summary" : "Use this to return a single employee record",
+        "operationId" : "employeeItem",
+        "parameters" : [ {
+          "name" : "identifier",
+          "in" : "path",
+          "description" : "record identifier",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "type" : "number",
+            "example" : 101
+          }
+        }, {
+          "name" : "session",
+          "in" : "query",
+          "description" : "session token",
+          "required" : false,
+          "style" : "form",
+          "explode" : true,
+          "schema" : {
+            "type" : "string",
+            "example" : "zaxscdvfbg"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "application/prag+json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/reply"
+                }
+              },
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/reply"
+                }
+              }
+            }
+          },
+          "default" : {
+            "description" : "Unexpected error",
+            "content" : {
+              "application/problem+json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/error"
+                }
+              },
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/error"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components" : {
+    "schemas" : {
+      "error" : {
+        "type" : "object",
+        "properties" : {
+          "type" : {
+            "type" : "string",
+            "example" : "Invalid Record"
+          },
+          "title" : {
+            "type" : "string",
+            "example" : "One or more missing properties"
+          },
+          "detail" : {
+            "type" : "string",
+            "example" : "Review the submitted record for missing required properties."
+          }
+        }
+      },
+      "reply" : {
+        "type" : "object",
+        "properties" : {
+          "metadata" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/reply_metadata"
+            }
+          },
+          "links" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/reply_links"
+            }
+          },
+          "items" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/employee"
+            }
+          }
+        },
+        "example" : {
+          "metadata" : [ {
+            "id" : "title",
+            "value" : "PhoenixCo Employees"
+          }, {
+            "id" : "title",
+            "value" : "PhoenixCo Employees"
+          } ],
+          "links" : [ {
+            "method" : "GET",
+            "id" : "home",
+            "href" : "http://api.example.org/",
+            "title" : "Home Page",
+            "properties" : [ {
+              "name" : "name",
+              "value" : "value"
+            }, {
+              "name" : "name",
+              "value" : "value"
+            } ]
+          }, {
+            "method" : "GET",
+            "id" : "home",
+            "href" : "http://api.example.org/",
+            "title" : "Home Page",
+            "properties" : [ {
+              "name" : "name",
+              "value" : "value"
+            }, {
+              "name" : "name",
+              "value" : "value"
+            } ]
+          } ],
+          "items" : [ {
+            "employeeIdentifier" : 123,
+            "contract" : {
+              "date-started" : "01/01/2020",
+              "contractIdentifier" : 123,
+              "date-closed" : "01/01/2020",
+              "type-code" : 1,
+              "handle-code" : "PP-01"
+            },
+            "given-name" : "Joe",
+            "position" : {
+              "positionIdentifier" : 123,
+              "date-started" : "01/01/2020",
+              "name" : "full time",
+              "date-closed" : "01/01/2020",
+              "handle-code" : "PP-01"
+            },
+            "family-name" : "Doe",
+            "email" : "joe.doe@example.org",
+            "person-code" : "OSC001"
+          }, {
+            "employeeIdentifier" : 123,
+            "contract" : {
+              "date-started" : "01/01/2020",
+              "contractIdentifier" : 123,
+              "date-closed" : "01/01/2020",
+              "type-code" : 1,
+              "handle-code" : "PP-01"
+            },
+            "given-name" : "Joe",
+            "position" : {
+              "positionIdentifier" : 123,
+              "date-started" : "01/01/2020",
+              "name" : "full time",
+              "date-closed" : "01/01/2020",
+              "handle-code" : "PP-01"
+            },
+            "family-name" : "Doe",
+            "email" : "joe.doe@example.org",
+            "person-code" : "OSC001"
+          } ]
+        }
+      },
+      "employeeCollection" : {
+        "type" : "array",
+        "items" : {
+          "$ref" : "#/components/schemas/employee"
+        }
+      },
+      "employee" : {
+        "type" : "object",
+        "properties" : {
+          "employeeIdentifier" : {
+            "type" : "number",
+            "example" : 123
+          },
+          "person-code" : {
+            "type" : "string",
+            "example" : "OSC001"
+          },
+          "given-name" : {
+            "type" : "string",
+            "example" : "Joe"
+          },
+          "family-name" : {
+            "type" : "string",
+            "example" : "Doe"
+          },
+          "email" : {
+            "type" : "string",
+            "example" : "joe.doe@example.org"
+          },
+          "contract" : {
+            "$ref" : "#/components/schemas/contract"
+          },
+          "position" : {
+            "$ref" : "#/components/schemas/position"
+          }
+        },
+        "example" : {
+          "employeeIdentifier" : 123,
+          "contract" : {
+            "date-started" : "01/01/2020",
+            "contractIdentifier" : 123,
+            "date-closed" : "01/01/2020",
+            "type-code" : 1,
+            "handle-code" : "PP-01"
+          },
+          "given-name" : "Joe",
+          "position" : {
+            "positionIdentifier" : 123,
+            "date-started" : "01/01/2020",
+            "name" : "full time",
+            "date-closed" : "01/01/2020",
+            "handle-code" : "PP-01"
+          },
+          "family-name" : "Doe",
+          "email" : "joe.doe@example.org",
+          "person-code" : "OSC001"
+        }
+      },
+      "contract" : {
+        "type" : "object",
+        "properties" : {
+          "contractIdentifier" : {
+            "type" : "number",
+            "example" : 123
+          },
+          "handle-code" : {
+            "type" : "string",
+            "example" : "PP-01"
+          },
+          "type-code" : {
+            "type" : "number",
+            "example" : 1,
+            "enum" : [ 1, 10.0, 50.0 ]
+          },
+          "date-started" : {
+            "type" : "string",
+            "example" : "01/01/2020"
+          },
+          "date-closed" : {
+            "type" : "string",
+            "example" : "01/01/2020"
+          }
+        },
+        "example" : {
+          "date-started" : "01/01/2020",
+          "contractIdentifier" : 123,
+          "date-closed" : "01/01/2020",
+          "type-code" : 1,
+          "handle-code" : "PP-01"
+        }
+      },
+      "position" : {
+        "type" : "object",
+        "properties" : {
+          "positionIdentifier" : {
+            "type" : "number",
+            "example" : 123
+          },
+          "handle-code" : {
+            "type" : "string",
+            "example" : "PP-01"
+          },
+          "name" : {
+            "type" : "string",
+            "example" : "full time"
+          },
+          "date-started" : {
+            "type" : "string",
+            "example" : "01/01/2020"
+          },
+          "date-closed" : {
+            "type" : "string",
+            "example" : "01/01/2020"
+          }
+        },
+        "example" : {
+          "positionIdentifier" : 123,
+          "date-started" : "01/01/2020",
+          "name" : "full time",
+          "date-closed" : "01/01/2020",
+          "handle-code" : "PP-01"
+        }
+      },
+      "start" : {
+        "type" : "object",
+        "properties" : {
+          "identifier" : {
+            "type" : "string",
+            "example" : "q1w2e3r4"
+          }
+        }
+      },
+      "reply_metadata" : {
+        "properties" : {
+          "id" : {
+            "type" : "string",
+            "example" : "title"
+          },
+          "value" : {
+            "type" : "string",
+            "example" : "PhoenixCo Employees"
+          }
+        },
+        "example" : {
+          "id" : "title",
+          "value" : "PhoenixCo Employees"
+        }
+      },
+      "reply_properties" : {
+        "properties" : {
+          "name" : {
+            "type" : "string"
+          },
+          "value" : {
+            "type" : "string"
+          }
+        },
+        "example" : {
+          "name" : "name",
+          "value" : "value"
+        }
+      },
+      "reply_links" : {
+        "properties" : {
+          "id" : {
+            "type" : "string",
+            "example" : "home"
+          },
+          "href" : {
+            "type" : "string",
+            "example" : "http://api.example.org/"
+          },
+          "title" : {
+            "type" : "string",
+            "example" : "Home Page"
+          },
+          "method" : {
+            "type" : "string",
+            "example" : "GET",
+            "enum" : [ "GET", "POST", "PUT", "PATCH", "DELETE" ]
+          },
+          "properties" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/reply_properties"
+            }
+          }
+        },
+        "example" : {
+          "method" : "GET",
+          "id" : "home",
+          "href" : "http://api.example.org/",
+          "title" : "Home Page",
+          "properties" : [ {
+            "name" : "name",
+            "value" : "value"
+          }, {
+            "name" : "name",
+            "value" : "value"
+          } ]
+        }
+      }
+    },
+    "responses" : {
+      "created" : {
+        "description" : "Created",
+        "headers" : {
+          "Location" : {
+            "description" : "URL of created resource",
+            "style" : "simple",
+            "explode" : false,
+            "schema" : {
+              "type" : "string"
+            },
+            "example" : "/employee/123"
+          }
+        }
+      },
+      "error" : {
+        "description" : "Unexpected error",
+        "content" : {
+          "application/problem+json" : {
+            "schema" : {
+              "$ref" : "#/components/schemas/error"
+            }
+          },
+          "application/json" : {
+            "schema" : {
+              "$ref" : "#/components/schemas/error"
+            }
+          }
+        }
+      },
+      "reply" : {
+        "description" : "OK",
+        "content" : {
+          "application/prag+json" : {
+            "schema" : {
+              "$ref" : "#/components/schemas/reply"
+            }
+          },
+          "application/json" : {
+            "schema" : {
+              "$ref" : "#/components/schemas/reply"
+            }
+          }
+        }
+      }
+    },
+    "parameters" : {
+      "token" : {
+        "name" : "session",
+        "in" : "query",
+        "description" : "session token",
+        "required" : false,
+        "style" : "form",
+        "explode" : true,
+        "schema" : {
+          "type" : "string",
+          "example" : "zaxscdvfbg"
+        }
+      },
+      "identifier" : {
+        "name" : "identifier",
+        "in" : "path",
+        "description" : "record identifier",
+        "required" : true,
+        "style" : "simple",
+        "explode" : false,
+        "schema" : {
+          "type" : "number",
+          "example" : 101
+        }
+      },
+      "status" : {
+        "name" : "status",
+        "in" : "query",
+        "description" : "status flag",
+        "required" : false,
+        "style" : "form",
+        "explode" : true,
+        "schema" : {
+          "type" : "string",
+          "example" : "active",
+          "enum" : [ "active", "closed", "pending" ]
+        }
+      },
+      "ifNoneMatch" : {
+        "name" : "if-None-Match",
+        "in" : "header",
+        "description" : "Conditional Create Header",
+        "required" : false,
+        "style" : "simple",
+        "explode" : false,
+        "schema" : {
+          "type" : "string",
+          "example" : "*"
+        }
+      },
+      "ifMatch" : {
+        "name" : "If-Match",
+        "in" : "header",
+        "description" : "Conditional Update Header",
+        "required" : false,
+        "style" : "simple",
+        "explode" : false,
+        "schema" : {
+          "type" : "string",
+          "example" : "zaxscdvfbg"
+        }
+      }
+    },
+    "requestBodies" : {
+      "start" : {
+        "content" : {
+          "application/x-www-form-urlencoded" : {
+            "schema" : {
+              "$ref" : "#/components/schemas/start"
+            }
+          },
+          "application/json" : {
+            "schema" : {
+              "$ref" : "#/components/schemas/start"
+            }
+          }
+        }
+      },
+      "employee" : {
+        "content" : {
+          "application/x-www-form-urlencoded" : {
+            "schema" : {
+              "$ref" : "#/components/schemas/employee"
+            }
+          },
+          "application/json" : {
+            "schema" : {
+              "$ref" : "#/components/schemas/employee"
+            }
+          }
+        }
+      }
+    }
+  }
+}
